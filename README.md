@@ -13,5 +13,4 @@ Breaking chain compute the factors AS1 and AS2
 
 Need to add Knuchannel.py using pionchannel as template
 
-The folder used for the example is too big, remind me to send it in a different way if you need it, it is the output folder of GUTFIT
-
+The folder used for the example is SUSY140323.tar.xz
