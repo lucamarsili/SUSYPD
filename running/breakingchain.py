@@ -26,7 +26,7 @@ a321 = [-3, 1, 33/5] ####MSSM
 a3221 = [-3, 2, 4, 21/2]
 
 
-AL = 1.2  #SUSYvalue
+AL = 0.4  #SUSYvalue
 
 #implement  wino ratio, just small correction probably
 

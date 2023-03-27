@@ -53,22 +53,22 @@ def CIIW(h,f,g,x,y,Uup,Uel,Udown):
     RotateUel = True
     #j = 1 k = 2
     
-    SumDiagr = SumDiagr +CL(x,y,h,f,g,np.conjugate(Uup),Uel,0,1,2,0,RotateUup,RotateUel)*Udown[2][0]*Uup[1][0] #do the permutation at this point
-    SumDiagr = SumDiagr +CL(x,y,h,f,g,np.conjugate(Uup),Uel,2,0,1,0,RotateUup,RotateUel)*Udown[2][0]*Uup[1][0] #do the permutation at this point
-    SumDiagr = SumDiagr +CL(x,y,h,f,g,np.conjugate(Uup),Uel,1,2,0,0,RotateUup,RotateUel)*Udown[2][0]*Uup[1][0] #do the permutation at this point
+    SumDiagr = SumDiagr +CL(x,y,h,f,g,np.conjugate(Uup),np.conjugate(np.transpose(Uel)),0,1,2,0,RotateUup,RotateUel)*Udown[2][0]*Uup[1][0] #do the permutation at this point
+    SumDiagr = SumDiagr +CL(x,y,h,f,g,np.conjugate(Uup),np.conjugate(np.transpose(Uel)),2,0,1,0,RotateUup,RotateUel)*Udown[2][0]*Uup[1][0] #do the permutation at this point
+    SumDiagr = SumDiagr +CL(x,y,h,f,g,np.conjugate(Uup),np.conjugate(np.transpose(Uel)),1,2,0,0,RotateUup,RotateUel)*Udown[2][0]*Uup[1][0] #do the permutation at this point
     
-    SumDiagr = SumDiagr -CL(x,y,h,f,g,np.conjugate(Uup),Uel,1,0,2,0,RotateUup,RotateUel)*Udown[2][0]*Uup[1][0] #do the permutation at this point
-    SumDiagr = SumDiagr -CL(x,y,h,f,g,np.conjugate(Uup),Uel,2,1,0,0,RotateUup,RotateUel)*Udown[2][0]*Uup[1][0] #do the permutation at this point
-    SumDiagr = SumDiagr -CL(x,y,h,f,g,np.conjugate(Uup),Uel,0,2,1,0,RotateUup,RotateUel)*Udown[2][0]*Uup[1][0] #do the permutation at this point
+    SumDiagr = SumDiagr -CL(x,y,h,f,g,np.conjugate(Uup),np.conjugate(np.transpose(Uel)),1,0,2,0,RotateUup,RotateUel)*Udown[2][0]*Uup[1][0] #do the permutation at this point
+    SumDiagr = SumDiagr -CL(x,y,h,f,g,np.conjugate(Uup),np.conjugate(np.transpose(Uel)),2,1,0,0,RotateUup,RotateUel)*Udown[2][0]*Uup[1][0] #do the permutation at this point
+    SumDiagr = SumDiagr -CL(x,y,h,f,g,np.conjugate(Uup),np.conjugate(np.transpose(Uel)),0,2,1,0,RotateUup,RotateUel)*Udown[2][0]*Uup[1][0] #do the permutation at this point
     
     #j = 2 k = 1
-    SumDiagr = SumDiagr +CL(x,y,h,f,g,np.conjugate(Uup),Uel,0,2,1,0,RotateUup,RotateUel)*Udown[1][0]*Uup[2][0] #do the permutation at this point
-    SumDiagr = SumDiagr +CL(x,y,h,f,g,np.conjugate(Uup),Uel,1,0,2,0,RotateUup,RotateUel)*Udown[1][0]*Uup[2][0] #do the permutation at this point
-    SumDiagr = SumDiagr +CL(x,y,h,f,g,np.conjugate(Uup),Uel,2,1,0,0,RotateUup,RotateUel)*Udown[1][0]*Uup[2][0] #do the permutation at this point
+    SumDiagr = SumDiagr +CL(x,y,h,f,g,np.conjugate(Uup),np.conjugate(np.transpose(Uel)),0,2,1,0,RotateUup,RotateUel)*Udown[1][0]*Uup[2][0] #do the permutation at this point
+    SumDiagr = SumDiagr +CL(x,y,h,f,g,np.conjugate(Uup),np.conjugate(np.transpose(Uel)),1,0,2,0,RotateUup,RotateUel)*Udown[1][0]*Uup[2][0] #do the permutation at this point
+    SumDiagr = SumDiagr +CL(x,y,h,f,g,np.conjugate(Uup),np.conjugate(np.transpose(Uel)),2,1,0,0,RotateUup,RotateUel)*Udown[1][0]*Uup[2][0] #do the permutation at this point
     
-    SumDiagr = SumDiagr -CL(x,y,h,f,g,np.conjugate(Uup),Uel,0,1,2,0,RotateUup,RotateUel)*Udown[1][0]*Uup[2][0] #do the permutation at this point
-    SumDiagr = SumDiagr -CL(x,y,h,f,g,np.conjugate(Uup),Uel,2,0,1,0,RotateUup,RotateUel)*Udown[1][0]*Uup[2][0] #do the permutation at this point
-    SumDiagr = SumDiagr -CL(x,y,h,f,g,np.conjugate(Uup),Uel,1,2,0,0,RotateUup,RotateUel)*Udown[1][0]*Uup[2][0] #do the permutation at this point
+    SumDiagr = SumDiagr -CL(x,y,h,f,g,np.conjugate(Uup),np.conjugate(np.transpose(Uel)),0,1,2,0,RotateUup,RotateUel)*Udown[1][0]*Uup[2][0] #do the permutation at this point
+    SumDiagr = SumDiagr -CL(x,y,h,f,g,np.conjugate(Uup),np.conjugate(np.transpose(Uel)),2,0,1,0,RotateUup,RotateUel)*Udown[1][0]*Uup[2][0] #do the permutation at this point
+    SumDiagr = SumDiagr -CL(x,y,h,f,g,np.conjugate(Uup),np.conjugate(np.transpose(Uel)),1,2,0,0,RotateUup,RotateUel)*Udown[1][0]*Uup[2][0] #do the permutation at this point
     
     
     return (1/12)*SumDiagr
@@ -98,23 +98,23 @@ def CIhpm(h,f,g,Yd,Yu,Ye,x,y,Uup,Uel,Udown): ##change it!!
     
     #j = 1 k = 2
     
-    SumDiagr = SumDiagr + CL(x,y,h,f,g,np.conjugate(Uup),Uel,0,1,2,0,RotateUup,RotateUel)*(np.conjugate(np.transpose(Yd)))[2][0]*(np.conjugate(np.transpose(Yu)))[1][0]
-    SumDiagr = SumDiagr + CL(x,y,h,f,g,np.conjugate(Uup),Uel,2,0,1,0,RotateUup,RotateUel)*(np.conjugate(np.transpose(Yd)))[2][0]*(np.conjugate(np.transpose(Yu)))[1][0]
-    SumDiagr = SumDiagr + CL(x,y,h,f,g,np.conjugate(Uup),Uel,1,2,0,0,RotateUup,RotateUel)*(np.conjugate(np.transpose(Yd)))[2][0]*(np.conjugate(np.transpose(Yu)))[1][0]
+    SumDiagr = SumDiagr + CL(x,y,h,f,g,np.conjugate(Uup),np.conjugate(np.transpose(Uel)),0,1,2,0,RotateUup,RotateUel)*(np.conjugate(np.transpose(Yd)))[2][0]*(np.conjugate(np.transpose(Yu)))[1][0]
+    SumDiagr = SumDiagr + CL(x,y,h,f,g,np.conjugate(Uup),np.conjugate(np.transpose(Uel)),2,0,1,0,RotateUup,RotateUel)*(np.conjugate(np.transpose(Yd)))[2][0]*(np.conjugate(np.transpose(Yu)))[1][0]
+    SumDiagr = SumDiagr + CL(x,y,h,f,g,np.conjugate(Uup),np.conjugate(np.transpose(Uel)),1,2,0,0,RotateUup,RotateUel)*(np.conjugate(np.transpose(Yd)))[2][0]*(np.conjugate(np.transpose(Yu)))[1][0]
     
-    SumDiagr = SumDiagr - CL(x,y,h,f,g,np.conjugate(Uup),Uel,1,0,2,0,RotateUup,RotateUel)*(np.conjugate(np.transpose(Yd)))[2][0]*(np.conjugate(np.transpose(Yu)))[1][0]
-    SumDiagr = SumDiagr - CL(x,y,h,f,g,np.conjugate(Uup),Uel,2,1,0,0,RotateUup,RotateUel)*(np.conjugate(np.transpose(Yd)))[2][0]*(np.conjugate(np.transpose(Yu)))[1][0]
-    SumDiagr = SumDiagr - CL(x,y,h,f,g,np.conjugate(Uup),Uel,0,2,1,0,RotateUup,RotateUel)*(np.conjugate(np.transpose(Yd)))[2][0]*(np.conjugate(np.transpose(Yu)))[1][0]
+    SumDiagr = SumDiagr - CL(x,y,h,f,g,np.conjugate(Uup),np.conjugate(np.transpose(Uel)),1,0,2,0,RotateUup,RotateUel)*(np.conjugate(np.transpose(Yd)))[2][0]*(np.conjugate(np.transpose(Yu)))[1][0]
+    SumDiagr = SumDiagr - CL(x,y,h,f,g,np.conjugate(Uup),np.conjugate(np.transpose(Uel)),2,1,0,0,RotateUup,RotateUel)*(np.conjugate(np.transpose(Yd)))[2][0]*(np.conjugate(np.transpose(Yu)))[1][0]
+    SumDiagr = SumDiagr - CL(x,y,h,f,g,np.conjugate(Uup),np.conjugate(np.transpose(Uel)),0,2,1,0,RotateUup,RotateUel)*(np.conjugate(np.transpose(Yd)))[2][0]*(np.conjugate(np.transpose(Yu)))[1][0]
     
     #j = 2 k = 1
     
-    SumDiagr = SumDiagr + CL(x,y,h,f,g,np.conjugate(Uup),Uel,0,2,1,0,RotateUup,RotateUel)*(np.conjugate(np.transpose(Yd)))[1][0]*(np.conjugate(np.transpose(Yu)))[2][0]
-    SumDiagr = SumDiagr + CL(x,y,h,f,g,np.conjugate(Uup),Uel,1,0,2,0,RotateUup,RotateUel)*(np.conjugate(np.transpose(Yd)))[1][0]*(np.conjugate(np.transpose(Yu)))[2][0]
-    SumDiagr = SumDiagr + CL(x,y,h,f,g,np.conjugate(Uup),Uel,2,1,0,0,RotateUup,RotateUel)*(np.conjugate(np.transpose(Yd)))[1][0]*(np.conjugate(np.transpose(Yu)))[2][0]
+    SumDiagr = SumDiagr + CL(x,y,h,f,g,np.conjugate(Uup),np.conjugate(np.transpose(Uel)),0,2,1,0,RotateUup,RotateUel)*(np.conjugate(np.transpose(Yd)))[1][0]*(np.conjugate(np.transpose(Yu)))[2][0]
+    SumDiagr = SumDiagr + CL(x,y,h,f,g,np.conjugate(Uup),np.conjugate(np.transpose(Uel)),1,0,2,0,RotateUup,RotateUel)*(np.conjugate(np.transpose(Yd)))[1][0]*(np.conjugate(np.transpose(Yu)))[2][0]
+    SumDiagr = SumDiagr + CL(x,y,h,f,g,np.conjugate(Uup),np.conjugate(np.transpose(Uel)),2,1,0,0,RotateUup,RotateUel)*(np.conjugate(np.transpose(Yd)))[1][0]*(np.conjugate(np.transpose(Yu)))[2][0]
     
-    SumDiagr = SumDiagr - CL(x,y,h,f,g,np.conjugate(Uup),Uel,2,0,1,0,RotateUup,RotateUel)*(np.conjugate(np.transpose(Yd)))[1][0]*(np.conjugate(np.transpose(Yu)))[2][0]
-    SumDiagr = SumDiagr - CL(x,y,h,f,g,np.conjugate(Uup),Uel,1,2,0,0,RotateUup,RotateUel)*(np.conjugate(np.transpose(Yd)))[1][0]*(np.conjugate(np.transpose(Yu)))[2][0]
-    SumDiagr = SumDiagr - CL(x,y,h,f,g,np.conjugate(Uup),Uel,0,1,2,0,RotateUup,RotateUel)*(np.conjugate(np.transpose(Yd)))[1][0]*(np.conjugate(np.transpose(Yu)))[2][0]
+    SumDiagr = SumDiagr - CL(x,y,h,f,g,np.conjugate(Uup),np.conjugate(np.transpose(Uel)),2,0,1,0,RotateUup,RotateUel)*(np.conjugate(np.transpose(Yd)))[1][0]*(np.conjugate(np.transpose(Yu)))[2][0]
+    SumDiagr = SumDiagr - CL(x,y,h,f,g,np.conjugate(Uup),np.conjugate(np.transpose(Uel)),1,2,0,0,RotateUup,RotateUel)*(np.conjugate(np.transpose(Yd)))[1][0]*(np.conjugate(np.transpose(Yu)))[2][0]
+    SumDiagr = SumDiagr - CL(x,y,h,f,g,np.conjugate(Uup),np.conjugate(np.transpose(Uel)),0,1,2,0,RotateUup,RotateUel)*(np.conjugate(np.transpose(Yd)))[1][0]*(np.conjugate(np.transpose(Yu)))[2][0]
     
     return SumDiagr
 
@@ -136,22 +136,22 @@ def CVhpm(h,f,g,Yd,Yu,Ye,x,y,Uup,Uel,Udown,L = False):
     RotateUel = True
     
     #j = 1 k = 2
-    SumDiagr = SumDiagr +CL(x,y,h,f,g,np.conjugate(Uup),Uel,0,1,2,0,RotateUup,RotateUel,L)*Yu[2][0]*Yd[1][0] #do the permutation at this point
-    SumDiagr = SumDiagr +CL(x,y,h,f,g,np.conjugate(Uup),Uel,1,2,0,0,RotateUup,RotateUel,L)*Yu[2][0]*Yd[1][0] #do the permutation at this point
-    SumDiagr = SumDiagr +CL(x,y,h,f,g,np.conjugate(Uup),Uel,2,0,1,0,RotateUup,RotateUel,L)*Yu[2][0]*Yd[1][0] #do the permutation at this point
+    SumDiagr = SumDiagr +CL(x,y,h,f,g,np.conjugate(Uup),np.conjugate(np.transpose(Uel)),0,1,2,0,RotateUup,RotateUel,L)*Yu[2][0]*Yd[1][0] #do the permutation at this point
+    SumDiagr = SumDiagr +CL(x,y,h,f,g,np.conjugate(Uup),np.conjugate(np.transpose(Uel)),1,2,0,0,RotateUup,RotateUel,L)*Yu[2][0]*Yd[1][0] #do the permutation at this point
+    SumDiagr = SumDiagr +CL(x,y,h,f,g,np.conjugate(Uup),np.conjugate(np.transpose(Uel)),2,0,1,0,RotateUup,RotateUel,L)*Yu[2][0]*Yd[1][0] #do the permutation at this point
     
-    SumDiagr = SumDiagr -CL(x,y,h,f,g,np.conjugate(Uup),Uel,0,2,1,0,RotateUup,RotateUel,L)*Yu[2][0]*Yd[1][0] #do the permutation at this point
-    SumDiagr = SumDiagr -CL(x,y,h,f,g,np.conjugate(Uup),Uel,1,0,2,0,RotateUup,RotateUel,L)*Yu[2][0]*Yd[1][0] #do the permutation at this point
-    SumDiagr = SumDiagr -CL(x,y,h,f,g,np.conjugate(Uup),Uel,2,1,0,0,RotateUup,RotateUel,L)*Yu[2][0]*Yd[1][0] #do the permutation at this point
+    SumDiagr = SumDiagr -CL(x,y,h,f,g,np.conjugate(Uup),np.conjugate(np.transpose(Uel)),0,2,1,0,RotateUup,RotateUel,L)*Yu[2][0]*Yd[1][0] #do the permutation at this point
+    SumDiagr = SumDiagr -CL(x,y,h,f,g,np.conjugate(Uup),np.conjugate(np.transpose(Uel)),1,0,2,0,RotateUup,RotateUel,L)*Yu[2][0]*Yd[1][0] #do the permutation at this point
+    SumDiagr = SumDiagr -CL(x,y,h,f,g,np.conjugate(Uup),np.conjugate(np.transpose(Uel)),2,1,0,0,RotateUup,RotateUel,L)*Yu[2][0]*Yd[1][0] #do the permutation at this point
     
     #j = 2 k = 1
-    SumDiagr = SumDiagr +CL(x,y,h,f,g,np.conjugate(Uup),Uel,0,2,1,0,RotateUup,RotateUel,L)*Yu[1][0]*Yd[1][0] #do the permutation at this point
-    SumDiagr = SumDiagr +CL(x,y,h,f,g,np.conjugate(Uup),Uel,1,0,2,0,RotateUup,RotateUel,L)*Yu[1][0]*Yd[1][0] #do the permutation at this point
-    SumDiagr = SumDiagr +CL(x,y,h,f,g,np.conjugate(Uup),Uel,2,1,0,0,RotateUup,RotateUel,L)*Yu[1][0]*Yd[1][0] #do the permutation at this point
+    SumDiagr = SumDiagr +CL(x,y,h,f,g,np.conjugate(Uup),np.conjugate(np.transpose(Uel)),0,2,1,0,RotateUup,RotateUel,L)*Yu[1][0]*Yd[1][0] #do the permutation at this point
+    SumDiagr = SumDiagr +CL(x,y,h,f,g,np.conjugate(Uup),np.conjugate(np.transpose(Uel)),1,0,2,0,RotateUup,RotateUel,L)*Yu[1][0]*Yd[1][0] #do the permutation at this point
+    SumDiagr = SumDiagr +CL(x,y,h,f,g,np.conjugate(Uup),np.conjugate(np.transpose(Uel)),2,1,0,0,RotateUup,RotateUel,L)*Yu[1][0]*Yd[1][0] #do the permutation at this point
     
-    SumDiagr = SumDiagr -CL(x,y,h,f,g,np.conjugate(Uup),Uel,0,1,2,0,RotateUup,RotateUel,L)*Yu[1][0]*Yd[1][0] #do the permutation at this point
-    SumDiagr = SumDiagr -CL(x,y,h,f,g,np.conjugate(Uup),Uel,1,2,0,0,RotateUup,RotateUel,L)*Yu[1][0]*Yd[1][0] #do the permutation at this point
-    SumDiagr = SumDiagr -CL(x,y,h,f,g,np.conjugate(Uup),Uel,2,0,1,0,RotateUup,RotateUel,L)*Yu[1][0]*Yd[1][0] #do the permutation at this point
+    SumDiagr = SumDiagr -CL(x,y,h,f,g,np.conjugate(Uup),np.conjugate(np.transpose(Uel)),0,1,2,0,RotateUup,RotateUel,L)*Yu[1][0]*Yd[1][0] #do the permutation at this point
+    SumDiagr = SumDiagr -CL(x,y,h,f,g,np.conjugate(Uup),np.conjugate(np.transpose(Uel)),1,2,0,0,RotateUup,RotateUel,L)*Yu[1][0]*Yd[1][0] #do the permutation at this point
+    SumDiagr = SumDiagr -CL(x,y,h,f,g,np.conjugate(Uup),np.conjugate(np.transpose(Uel)),2,0,1,0,RotateUup,RotateUel,L)*Yu[1][0]*Yd[1][0] #do the permutation at this point
     
     
     SumDiagr = (1/12)*SumDiagr #change here it imght be wrong!!! 
@@ -169,22 +169,22 @@ def CIh0(h,f,g,Yd,Yu,Ye,x,y,Uup,Uel,Udown):
     RotateUel = True
     for l in range(3):
         #i = 1 j = 2
-        SumDiagr = SumDiagr +CL(x,y,h,f,g,np.conjugate(Uup),Uel,1,2,0,l,RotateUup,RotateUel)*np.conjugate(np.transpose(Yu))[1][0]*np.conjugate(np.transpose(Yd))[l][0]  #do the permutation at this point
-        SumDiagr = SumDiagr +CL(x,y,h,f,g,np.conjugate(Uup),Uel,0,1,2,l,RotateUup,RotateUel)*np.conjugate(np.transpose(Yu))[1][0]*np.conjugate(np.transpose(Yd))[l][0]  #do the permutation at this point
-        SumDiagr = SumDiagr +CL(x,y,h,f,g,np.conjugate(Uup),Uel,2,0,1,l,RotateUup,RotateUel)*np.conjugate(np.transpose(Yu))[1][0]*np.conjugate(np.transpose(Yd))[l][0]  #do the permutation at this point
+        SumDiagr = SumDiagr +CL(x,y,h,f,g,np.conjugate(Uup),np.conjugate(np.transpose(Uel)),1,2,0,l,RotateUup,RotateUel)*np.conjugate(np.transpose(Yu))[1][0]*np.conjugate(np.transpose(Yd))[l][0]  #do the permutation at this point
+        SumDiagr = SumDiagr +CL(x,y,h,f,g,np.conjugate(Uup),np.conjugate(np.transpose(Uel)),0,1,2,l,RotateUup,RotateUel)*np.conjugate(np.transpose(Yu))[1][0]*np.conjugate(np.transpose(Yd))[l][0]  #do the permutation at this point
+        SumDiagr = SumDiagr +CL(x,y,h,f,g,np.conjugate(Uup),np.conjugate(np.transpose(Uel)),2,0,1,l,RotateUup,RotateUel)*np.conjugate(np.transpose(Yu))[1][0]*np.conjugate(np.transpose(Yd))[l][0]  #do the permutation at this point
         
-        SumDiagr = SumDiagr -CL(x,y,h,f,g,np.conjugate(Uup),Uel,2,1,0,l,RotateUup,RotateUel)*np.conjugate(np.transpose(Yu))[1][0]*np.conjugate(np.transpose(Yd))[l][0]  #do the permutation at this point
-        SumDiagr = SumDiagr -CL(x,y,h,f,g,np.conjugate(Uup),Uel,0,2,1,l,RotateUup,RotateUel)*np.conjugate(np.transpose(Yu))[1][0]*np.conjugate(np.transpose(Yd))[l][0]  #do the permutation at this point
-        SumDiagr = SumDiagr -CL(x,y,h,f,g,np.conjugate(Uup),Uel,1,0,2,l,RotateUup,RotateUel)*np.conjugate(np.transpose(Yu))[1][0]*np.conjugate(np.transpose(Yd))[l][0]  #do the permutation at this point
+        SumDiagr = SumDiagr -CL(x,y,h,f,g,np.conjugate(Uup),np.conjugate(np.transpose(Uel)),2,1,0,l,RotateUup,RotateUel)*np.conjugate(np.transpose(Yu))[1][0]*np.conjugate(np.transpose(Yd))[l][0]  #do the permutation at this point
+        SumDiagr = SumDiagr -CL(x,y,h,f,g,np.conjugate(Uup),np.conjugate(np.transpose(Uel)),0,2,1,l,RotateUup,RotateUel)*np.conjugate(np.transpose(Yu))[1][0]*np.conjugate(np.transpose(Yd))[l][0]  #do the permutation at this point
+        SumDiagr = SumDiagr -CL(x,y,h,f,g,np.conjugate(Uup),np.conjugate(np.transpose(Uel)),1,0,2,l,RotateUup,RotateUel)*np.conjugate(np.transpose(Yu))[1][0]*np.conjugate(np.transpose(Yd))[l][0]  #do the permutation at this point
     
         # i = 2 j = 1
-        SumDiagr = SumDiagr +CL(x,y,h,f,g,np.conjugate(Uup),Uel,2,1,0,l,RotateUup,RotateUel)*np.conjugate(np.transpose(Yu))[2][0]*np.conjugate(np.transpose(Ye))[l][0]  #do the permutation at this point
-        SumDiagr = SumDiagr +CL(x,y,h,f,g,np.conjugate(Uup),Uel,0,2,1,l,RotateUup,RotateUel)*np.conjugate(np.transpose(Yu))[2][0]*np.conjugate(np.transpose(Ye))[l][0]  #do the permutation at this point
-        SumDiagr = SumDiagr +CL(x,y,h,f,g,np.conjugate(Uup),Uel,1,0,2,l,RotateUup,RotateUel)*np.conjugate(np.transpose(Yu))[2][0]*np.conjugate(np.transpose(Ye))[l][0]  #do the permutation at this point
+        SumDiagr = SumDiagr +CL(x,y,h,f,g,np.conjugate(Uup),np.conjugate(np.transpose(Uel)),2,1,0,l,RotateUup,RotateUel)*np.conjugate(np.transpose(Yu))[2][0]*np.conjugate(np.transpose(Ye))[l][0]  #do the permutation at this point
+        SumDiagr = SumDiagr +CL(x,y,h,f,g,np.conjugate(Uup),np.conjugate(np.transpose(Uel)),0,2,1,l,RotateUup,RotateUel)*np.conjugate(np.transpose(Yu))[2][0]*np.conjugate(np.transpose(Ye))[l][0]  #do the permutation at this point
+        SumDiagr = SumDiagr +CL(x,y,h,f,g,np.conjugate(Uup),np.conjugate(np.transpose(Uel)),1,0,2,l,RotateUup,RotateUel)*np.conjugate(np.transpose(Yu))[2][0]*np.conjugate(np.transpose(Ye))[l][0]  #do the permutation at this point
 
-        SumDiagr = SumDiagr -CL(x,y,h,f,g,np.conjugate(Uup),Uel,1,2,0,l,RotateUup,RotateUel)*np.conjugate(np.transpose(Yu))[2][0]*np.conjugate(np.transpose(Ye))[l][0]  #do the permutation at this point
-        SumDiagr = SumDiagr -CL(x,y,h,f,g,np.conjugate(Uup),Uel,0,1,2,l,RotateUup,RotateUel)*np.conjugate(np.transpose(Yu))[2][0]*np.conjugate(np.transpose(Ye))[l][0]  #do the permutation at this point
-        SumDiagr = SumDiagr -CL(x,y,h,f,g,np.conjugate(Uup),Uel,2,0,1,l,RotateUup,RotateUel)*np.conjugate(np.transpose(Yu))[2][0]*np.conjugate(np.transpose(Ye))[l][0]  #do the permutation at this point
+        SumDiagr = SumDiagr -CL(x,y,h,f,g,np.conjugate(Uup),np.conjugate(np.transpose(Uel)),1,2,0,l,RotateUup,RotateUel)*np.conjugate(np.transpose(Yu))[2][0]*np.conjugate(np.transpose(Ye))[l][0]  #do the permutation at this point
+        SumDiagr = SumDiagr -CL(x,y,h,f,g,np.conjugate(Uup),np.conjugate(np.transpose(Uel)),0,1,2,l,RotateUup,RotateUel)*np.conjugate(np.transpose(Yu))[2][0]*np.conjugate(np.transpose(Ye))[l][0]  #do the permutation at this point
+        SumDiagr = SumDiagr -CL(x,y,h,f,g,np.conjugate(Uup),np.conjugate(np.transpose(Uel)),2,0,1,l,RotateUup,RotateUel)*np.conjugate(np.transpose(Yu))[2][0]*np.conjugate(np.transpose(Ye))[l][0]  #do the permutation at this point
 
     
     return -(1/12)*SumDiagr
@@ -247,18 +247,24 @@ def CVh0(h,f,g,Yd,Yu,Ye,x,y,Uup,Uel,Udown, L = False):
 ####################defining the functions passed to the proton decay, we have Ow, OhudR and OhudL
 
 def OW(h,f,g,Yd,Yu,Ye,x,y,Uup,Uel,Udown,alpha321SM_MZ,MGUT):
+    mwino = 1000
+    MSUSY = 100000
     Diagr = CIIW(h,f,g,x,y,Uup,Uel,Udown)+ CIIIW(h, f, g, x, y, Uup, Uel, Udown)
-    Op = ((1j*alpha321SM_MZ[1])/4*np.pi)*(1/MGUT)*0.5*Diagr
+    Op = ((1j*alpha321SM_MZ[1])/4*np.pi)*(1/MGUT)*(mwino/(MSUSY**2))*Diagr
     return np.conjugate(Op)*Op
     
 def OhudL(h,f,g,Yd,Yu,Ye,x,y,Uup,Uel,Udown,MGUT):
+    mwino = 1000
+    MSUSY = 100000
     Diagr = CIIhpm(h, f, g, Yd, Yu, Ye, x, y, Uup, Uel, Udown)+ CVhpm(h, f, g, Yd, Yu, Ye, x, y, Uup, Uel, Udown) + CIh0(h, f, g, Yd, Yu, Ye, x, y, Uup, Uel, Udown) + CVh0(h, f, g, Yd, Yu, Ye, x, y, Uup, Uel, Udown)
-    Op = (1j/16*np.pi)*(1/MGUT)*0.5*Diagr
+    Op = (1j/16*np.pi)*(1/MGUT)*(mwino/(MSUSY**2))*Diagr
     return np.conjugate(Op)*Op
 
 def OhudR(h,f,g,Yd,Yu,Ye,x,y,Uup,Uel,Udown,MGUT):
+    mwino = 1000
+    MSUSY = 100000
     Diagr = CIhpm(h, f, g, Yd, Yu, Ye, x, y, Uup, Uel, Udown) + CIIh0(h, f, g, Yd, Yu, Ye, x, y, Uup, Uel, Udown)
-    Op = (1j/16*np.pi)*(1/MGUT)*0.5*Diagr
+    Op = (1j/16*np.pi)*(1/MGUT)*(mwino/(MSUSY**2))*Diagr
     return np.conjugate(Op)*Op
 
 
