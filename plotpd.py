@@ -32,7 +32,7 @@ Parameters    = np.loadtxt(fname = 'arc_chi_100.txt')
 Lifetime = np.loadtxt(fname = 'PDpchannel_test.txt')
 #######################plot##########################################
 
-def mkPlot(args, fout="PDtestpion.pdf"):
+def mkPlot(args, fout="PDknu.pdf"):
     
     import matplotlib.pyplot as plt
     scale = 1.25
@@ -40,7 +40,7 @@ def mkPlot(args, fout="PDtestpion.pdf"):
     fig.subplots_adjust(hspace=0.35, wspace=0.35)
     
     plt.rcParams['font.size'] = 20
-    x1 = Parameters[:,2] #free parameter on the x axis
+    x1 = Parameters[:,3] #free parameter on the x axis
     y1 = Lifetime #lifetime on the y axis
     z = np.log10(Parameters[:,6]) #still lifetime
    # presentbound = (33.84-z.min())/(z.max()-z.min())

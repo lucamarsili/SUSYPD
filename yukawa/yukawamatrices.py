@@ -53,19 +53,19 @@ def load_parameter2():
  
 class YukawaMatrices: 
     def __init__(self,FreeParams = [],FreeHiggsMix = [],TanBeta = 10):
-        self.sign_parameter = 0
-        self.a1 = FreeParams[0]
-        self.a2 = FreeParams[1]
-        self.m0 = 5e-11
+        self.sign_parameter = FreeParams[0]
+        self.a1 = FreeParams[1]
+        self.a2 = FreeParams[2]
+        self.m0 = 10**FreeParams[3]
     
-        self.r1 = FreeParams[2]
-        self.r2 = FreeParams[3]
-        self.cnu =FreeParams[4]
-        self.ce = FreeParams[5]
+        self.r1 = 10**FreeParams[4]
+        self.r2 = 10**FreeParams[5]
+        self.cnu =10**FreeParams[6]
+        self.ce = 10**FreeParams[7]
         
         self.V11 = FreeHiggsMix[0] #Following Bowen's parameterization
-        self.V16 = FreeHiggsMix[1] #benchmarkpoint here would provide an univola link between GW and proton decay signal!!!!! fix this == fix ratio MN3 M1
-        self.V17 = FreeHiggsMix[2]
+        self.U12 = FreeHiggsMix[1] #benchmarkpoint here would provide an univola link between GW and proton decay signal!!!!! fix this == fix ratio MN3 M1
+        self.U13 = FreeHiggsMix[2]
         self.yurand = 1
         self.ycrand = 1
         self.ytrand = 1
@@ -156,11 +156,11 @@ class YukawaMatrices:
         Yu = self.matrix_Yu()
         Yd = self.matrix_Yd()
         f = -(Yu/(self.r2-1))-(np.real(Yd))/(self.r1*(self.r2-1))
-        return np.sqrt(3)*self.r1*(f/self.V16)
+        return np.sqrt(3)*self.r1*(f/self.U12)
     def matrix_Y120(self):
         Yd = self.matrix_Yd()
         hp = -1j*np.imag(Yd)/self.r1
-        return (1j*hp*self.r1*((self.ce+3)/(2*(self.ce+1))))/self.V17
+        return (1j*hp*self.r1*((self.ce+3)/(2*(self.ce+1))))/self.U13
     
     
     def matrix_Uup(self):

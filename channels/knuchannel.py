@@ -31,9 +31,9 @@ def CL(x,y,h,f,g,U,V,a,b,c,d, RotateU = True,RotateV = True,L = True):
         gV= np.dot(V,g)
     #consider all the possible combinations for both x and y following 0606.08648, then different choices on x and y 
     #will allow us to distringuish between left and right
-    part1R = x[0]*hU[a][b]*hV[c][d] + x[1]*fU[a][b]*fV[c][d] + x[2]*gU[a][b]*gV[c][d] + x[3]*gU[a][b]*gV[c][d] + x[5]*fU[a][b]*gV[c][d] 
-    part2R = x[6]*gU[a][b]*fV[c][d] + x[7]*hU[a][b]*gV[c][d] + x[8]*gU[a][b]*hV[c][d] + x[9]*fU[a][d]*hV[b][c] + x[10]*gU[a][d]*gV[b][c] 
-    part1L = x[0]*hU[a][b]*hV[c][d] + x[1]*fU[a][b]*fV[c][d] - x[3]*hU[a][b]*fV[c][d] - x[4]*fU[a][b]*hV[c][d]
+    part1R = x[0]*hU[a][b]*hV[c][d] + x[1]*fU[a][b]*fV[c][d] + x[2]*gU[a][b]*gV[c][d] + x[3]*hU[a][b]*fV[c][d] + x[4]*fU[a][b]*hV[c][d] +x[5]*fU[a][b]*gV[c][d] 
+    part2R = x[6]*gU[a][b]*fV[c][d] + x[7]*hU[a][b]*gV[c][d] + x[8]*gU[a][b]*hV[c][d] + x[9]*fU[a][d]*gV[b][c] + x[10]*gU[a][d]*gV[b][c] 
+    part1L = x[0]*hU[a][b]*hV[c][d] + x[1]*fU[a][b]*fV[c][d] - x[3]*hU[a][b]*fV[c][d] - x[4]*fU[a][b]*hV[c][d] +y[5]*fU[a][b]*gV[c][d]
     part2L = y[7]*hU[a][b]*gV[c][d] + y[9]*gU[a][c]*fV[b][d] + y[10]*gU[a][c]*gV[b][d]
     
     if L: 
@@ -44,24 +44,24 @@ def CL(x,y,h,f,g,U,V,a,b,c,d, RotateU = True,RotateV = True,L = True):
 ###############################################################################################################################################
 #neutral wino channel 
 
-def CW0A(h,f,g,x,y,Uup,Unu,Udown):
+def CW0A(h,f,g,x,y,Uup,Unu,Udown,nu):
     SumDiagrA =0
     RotateUup = False
     RotateUdown = False
-    SumDiagrA = SumDiagrA +CL(x,y,h,f,g,np.conjugate(Uup),np.conjugate(Udown),0,0,1,0,RotateUup,RotateUdown)-CL(x,y,h,f,g,np.conjugate(Uup),np.conjugate(Udown),0,1,0,0,RotateUup,RotateUdown)                                                                                                        
+    SumDiagrA = SumDiagrA +CL(x,y,h,f,g,np.conjugate(Uup),np.conjugate(Udown),0,0,1,nu,RotateUup,RotateUdown)-CL(x,y,h,f,g,np.conjugate(Uup),np.conjugate(Udown),0,1,0,nu,RotateUup,RotateUdown)                                                                                                        
     return SumDiagrA
 
 
-def CW0B(h,f,g,x,y,Uup,Unu,Udown):
+def CW0B(h,f,g,x,y,Uup,Unu,Udown,nu):
     SumDiagrB =0
     RotateUnu = True
     RotateUdown = True
-    SumDiagrB = SumDiagrB + CL(x,y,h,f,g,np.conjugate(np.transpose(Udown)),np.conjugate(np.transpose(Unu)),0,0,1,0,RotateUdown,RotateUnu)-CL(x,y,h,f,g,np.conjugate(np.transpose(Udown)),np.conjugate(np.transpose(Unu)),0,1,0,0,RotateUdown,RotateUnu)                                                                                                        
+    SumDiagrB = SumDiagrB + CL(x,y,h,f,g,np.conjugate(np.transpose(Udown)),np.conjugate(np.transpose(Unu)),0,0,1,nu,RotateUdown,RotateUnu)-CL(x,y,h,f,g,np.conjugate(np.transpose(Udown)),np.conjugate(np.transpose(Unu)),0,1,0,nu,RotateUdown,RotateUnu)                                                                                                        
     return SumDiagrB
 
 ############################################################################################################
 #charged wino channel
-def CIW(h,f,g,x,y,Uup,Unu,Udown):
+def CIW(h,f,g,x,y,Uup,Unu,Udown,nu):
     SumDiagr = 0 
     RotateUdown = False
     RotateUup = False
@@ -69,17 +69,17 @@ def CIW(h,f,g,x,y,Uup,Unu,Udown):
         #j = 0 null contribute!!
         #j = 1 ip = 0 i = 0 null contribute
         #j = 1 ip = 0 i = 2
-        SumDiagr = SumDiagr + CL(x,y,h,f,g,np.conjugate(Udown),np.conjugate(Uup),2,1,0,l,RotateUdown,RotateUup)*Udown[2][0]*Unu[l][0]
-        SumDiagr = SumDiagr + CL(x,y,h,f,g,np.conjugate(Udown),np.conjugate(Uup),0,2,1,l,RotateUdown,RotateUup)*Udown[2][0]*Unu[l][0]
-        SumDiagr = SumDiagr + CL(x,y,h,f,g,np.conjugate(Udown),np.conjugate(Uup),1,0,2,l,RotateUdown,RotateUup)*Udown[2][0]*Unu[l][0]
+        SumDiagr = SumDiagr + CL(x,y,h,f,g,np.conjugate(Udown),np.conjugate(Uup),2,1,0,l,RotateUdown,RotateUup)*Udown[2][0]*Unu[l][nu]
+        SumDiagr = SumDiagr + CL(x,y,h,f,g,np.conjugate(Udown),np.conjugate(Uup),0,2,1,l,RotateUdown,RotateUup)*Udown[2][0]*Unu[l][nu]
+        SumDiagr = SumDiagr + CL(x,y,h,f,g,np.conjugate(Udown),np.conjugate(Uup),1,0,2,l,RotateUdown,RotateUup)*Udown[2][0]*Unu[l][nu]
         
-        SumDiagr = SumDiagr - CL(x,y,h,f,g,np.conjugate(Udown),np.conjugate(Uup),1,2,0,l,RotateUdown,RotateUup)*Udown[2][0]*Unu[l][0]
-        SumDiagr = SumDiagr - CL(x,y,h,f,g,np.conjugate(Udown),np.conjugate(Uup),0,1,2,l,RotateUdown,RotateUup)*Udown[2][0]*Unu[l][0]
-        SumDiagr = SumDiagr - CL(x,y,h,f,g,np.conjugate(Udown),np.conjugate(Uup),2,0,1,l,RotateUdown,RotateUup)*Udown[2][0]*Unu[l][0]
+        SumDiagr = SumDiagr - CL(x,y,h,f,g,np.conjugate(Udown),np.conjugate(Uup),1,2,0,l,RotateUdown,RotateUup)*Udown[2][0]*Unu[l][nu]
+        SumDiagr = SumDiagr - CL(x,y,h,f,g,np.conjugate(Udown),np.conjugate(Uup),0,1,2,l,RotateUdown,RotateUup)*Udown[2][0]*Unu[l][nu]
+        SumDiagr = SumDiagr - CL(x,y,h,f,g,np.conjugate(Udown),np.conjugate(Uup),2,0,1,l,RotateUdown,RotateUup)*Udown[2][0]*Unu[l][nu]
     return (1/2)*SumDiagr
 
         
-def CIVW(h,f,g,x,y,Uup,Unu,Udown):
+def CIVW(h,f,g,x,y,Uup,Unu,Udown,nu):
     SumDiagr = 0 
     RotateUdown = True
     RotateUnu = True 
@@ -88,9 +88,9 @@ def CIVW(h,f,g,x,y,Uup,Unu,Udown):
             for k in range(3):
                 if(k<j):
                     if (j ==0):
-                        SumDiagr = SumDiagr + CL(x,y,h,f,g,np.conjugate(np.transpose(Udown)),np.conjugate(np.transpose(Unu)),i,j,k,0,RotateUdown,RotateUnu)*Udown[i][1]*Uup[k][0] - CL(x,y,h,f,g,Udown,Unu,i,k,j,0,RotateUdown,RotateUnu)*Udown[i][1]*Uup[k][0]
+                        SumDiagr = SumDiagr + CL(x,y,h,f,g,np.conjugate(np.transpose(Udown)),np.conjugate(np.transpose(Unu)),i,j,k,nu,RotateUdown,RotateUnu)*Udown[i][1]*Uup[k][0] - CL(x,y,h,f,g,Udown,Unu,i,k,j,nu,RotateUdown,RotateUnu)*Udown[i][1]*Uup[k][0]
                     if (j ==1): 
-                        SumDiagr = SumDiagr + CL(x,y,h,f,g,np.conjugate(np.transpose(Udown)),np.conjugate(np.transpose(Unu)),i,j,k,0,RotateUdown,RotateUnu)*Udown[i][0]*Uup[k][0] - CL(x,y,h,f,g,Udown,Unu,i,k,j,0,RotateUdown,RotateUnu)*Udown[i][0]*Uup[k][0]
+                        SumDiagr = SumDiagr + CL(x,y,h,f,g,np.conjugate(np.transpose(Udown)),np.conjugate(np.transpose(Unu)),i,j,k,nu,RotateUdown,RotateUnu)*Udown[i][0]*Uup[k][0] - CL(x,y,h,f,g,Udown,Unu,i,k,j,nu,RotateUdown,RotateUnu)*Udown[i][0]*Uup[k][0]
     return -(1/2)*SumDiagr
 
 
@@ -101,7 +101,7 @@ def CIVW(h,f,g,x,y,Uup,Unu,Udown):
 
 #neutral higgsino
 
-def CIIIh0(h,f,g,Yd,Yu,Ye,x,y,Uup,Unu,Udown):
+def CIIIh0(h,f,g,Yd,Yu,Ye,x,y,Uup,Unu,Udown,nu):
     SumDiagrj2 = 0
     SumDiagrudR =0
     RotateUdown = True
@@ -110,11 +110,11 @@ def CIIIh0(h,f,g,Yd,Yu,Ye,x,y,Uup,Unu,Udown):
     for i in range(3): 
         for k in range(3): 
             if (k!= 1):
-                SumDiagrj2 = SumDiagrj2 + CL(x,y,h,f,g,np.conjugate(np.transpose(Udown)),np.conjugate(np.transpose(Unu)),i,1,k,0,RotateUdown,RotateUnu)*(np.conjugate(np.transpose(Yu))[i][0])*(np.conjugate(np.transpose(Yd))[k][0]) 
-                SumDiagrj2 = SumDiagrj2 - CL(x,y,h,f,g,np.conjugate(np.transpose(Udown)),np.conjugate(np.transpose(Unu)),i,k,1,0,RotateUdown,RotateUnu)*(np.conjugate(np.transpose(Yu))[i][0])*(np.conjugate(np.transpose(Yd))[k][0])
+                SumDiagrj2 = SumDiagrj2 + CL(x,y,h,f,g,np.conjugate(np.transpose(Udown)),np.conjugate(np.transpose(Unu)),i,1,k,nu,RotateUdown,RotateUnu)*(np.conjugate(np.transpose(Yu))[i][0])*(np.conjugate(np.transpose(Yd))[k][0]) 
+                SumDiagrj2 = SumDiagrj2 - CL(x,y,h,f,g,np.conjugate(np.transpose(Udown)),np.conjugate(np.transpose(Unu)),i,k,1,nu,RotateUdown,RotateUnu)*(np.conjugate(np.transpose(Yu))[i][0])*(np.conjugate(np.transpose(Yd))[k][0])
             if (k!= 0):
-                SumDiagrudR = SumDiagrudR + CL(x,y,h,f,g,np.conjugate(np.transpose(Udown)),np.conjugate(np.transpose(Unu)),i,0,k,0,RotateUdown,RotateUnu)*(np.conjugate(np.transpose(Yu))[i][0])*(np.conjugate(np.transpose(Yd))[k][1]) 
-                SumDiagrudR = SumDiagrudR - CL(x,y,h,f,g,np.conjugate(np.transpose(Udown)),np.conjugate(np.transpose(Unu)),i,k,0,0,RotateUdown,RotateUnu)*(np.conjugate(np.transpose(Yu))[i][0])*(np.conjugate(np.transpose(Yd))[k][1])
+                SumDiagrudR = SumDiagrudR + CL(x,y,h,f,g,np.conjugate(np.transpose(Udown)),np.conjugate(np.transpose(Unu)),i,0,k,nu,RotateUdown,RotateUnu)*(np.conjugate(np.transpose(Yu))[i][0])*(np.conjugate(np.transpose(Yd))[k][1]) 
+                SumDiagrudR = SumDiagrudR - CL(x,y,h,f,g,np.conjugate(np.transpose(Udown)),np.conjugate(np.transpose(Unu)),i,k,0,nu,RotateUdown,RotateUnu)*(np.conjugate(np.transpose(Yu))[i][0])*(np.conjugate(np.transpose(Yd))[k][1])
     return SumDiagrj2, SumDiagrudR #j2 = usR
 
 
@@ -124,7 +124,7 @@ def CIIIh0(h,f,g,Yd,Yu,Ye,x,y,Uup,Unu,Udown):
 
 #charged higgsino
 
-def CIIIhpm(h,f,g,Yd,Yu,Ye,x,y,Uup,Unu,Udown):
+def CIIIhpm(h,f,g,Yd,Yu,Ye,x,y,Uup,Unu,Udown,nu):
     SumDiagr = 0 
     RotateUdown = True
     RotateUnu  = True
@@ -132,25 +132,25 @@ def CIIIhpm(h,f,g,Yd,Yu,Ye,x,y,Uup,Unu,Udown):
     for i in range(3):
         for k in range(3): 
             if (k!= 1):
-                SumDiagr = SumDiagr + CL(x,y,h,f,g,np.conjugate(np.transpose(Udown)),np.conjugate(np.transpose(Unu)),i,1,k,0,RotateUdown,RotateUnu)*(np.conjugate(np.transpose(Yd))[i][0])*(np.conjugate(np.transpose(Yu))[k][0]) 
-                SumDiagr = SumDiagr - CL(x,y,h,f,g,np.conjugate(np.transpose(Udown)),np.conjugate(np.transpose(Unu)),i,k,1,0,RotateUdown,RotateUnu)*(np.conjugate(np.transpose(Yd))[i][0])*(np.conjugate(np.transpose(Yu))[k][0])
+                SumDiagr = SumDiagr + CL(x,y,h,f,g,np.conjugate(np.transpose(Udown)),np.conjugate(np.transpose(Unu)),i,1,k,nu,RotateUdown,RotateUnu)*(np.conjugate(np.transpose(Yd))[i][0])*(np.conjugate(np.transpose(Yu))[k][0]) 
+                SumDiagr = SumDiagr - CL(x,y,h,f,g,np.conjugate(np.transpose(Udown)),np.conjugate(np.transpose(Unu)),i,k,1,nu,RotateUdown,RotateUnu)*(np.conjugate(np.transpose(Yd))[i][0])*(np.conjugate(np.transpose(Yu))[k][0])
     return -SumDiagr
 
 
-def CIVhpm(h,f,g,Yd,Yu,Ye,x,y,Uup,Unu,Udown, L =False): 
+def CIVhpm(h,f,g,Yd,Yu,Ye,x,y,Uup,Unu,Udown, nu,L =False): 
     SumDiagr = 0 
     RotateUdown = False
     RotateUup  = False
     ###only weird channel with j = 1 and ip=0, whatabout parity in the nucleus????
     #i = 2
     for l in range(3):
-        SumDiagr = SumDiagr + CL(x,y,h,f,g,np.conjugate(np.transpose(Udown)),np.conjugate(np.transpose(Uup)),2,1,0,l,RotateUdown,RotateUup,L)*Yu[2][0]*Ye[l][0]
-        SumDiagr = SumDiagr + CL(x,y,h,f,g,np.conjugate(np.transpose(Udown)),np.conjugate(np.transpose(Uup)),0,2,1,l,RotateUdown,RotateUup,L)*Yu[2][0]*Ye[l][0]
-        SumDiagr = SumDiagr + CL(x,y,h,f,g,np.conjugate(np.transpose(Udown)),np.conjugate(np.transpose(Uup)),1,0,2,l,RotateUdown,RotateUup,L)*Yu[2][0]*Ye[l][0]
+        SumDiagr = SumDiagr + CL(x,y,h,f,g,np.conjugate(np.transpose(Udown)),np.conjugate(np.transpose(Uup)),2,1,0,l,RotateUdown,RotateUup,L)*Yu[2][0]*Ye[l][nu]
+        SumDiagr = SumDiagr + CL(x,y,h,f,g,np.conjugate(np.transpose(Udown)),np.conjugate(np.transpose(Uup)),0,2,1,l,RotateUdown,RotateUup,L)*Yu[2][0]*Ye[l][nu]
+        SumDiagr = SumDiagr + CL(x,y,h,f,g,np.conjugate(np.transpose(Udown)),np.conjugate(np.transpose(Uup)),1,0,2,l,RotateUdown,RotateUup,L)*Yu[2][0]*Ye[l][nu]
     
-        SumDiagr = SumDiagr - CL(x,y,h,f,g,np.conjugate(np.transpose(Udown)),np.conjugate(np.transpose(Uup)),1,2,0,l,RotateUdown,RotateUup,L)*Yu[2][0]*Ye[l][0]
-        SumDiagr = SumDiagr - CL(x,y,h,f,g,np.conjugate(np.transpose(Udown)),np.conjugate(np.transpose(Uup)),0,1,2,l,RotateUdown,RotateUup,L)*Yu[2][0]*Ye[l][0]
-        SumDiagr = SumDiagr - CL(x,y,h,f,g,np.conjugate(np.transpose(Udown)),np.conjugate(np.transpose(Uup)),2,0,1,l,RotateUdown,RotateUup,L)*Yu[2][0]*Ye[l][0]
+        SumDiagr = SumDiagr - CL(x,y,h,f,g,np.conjugate(np.transpose(Udown)),np.conjugate(np.transpose(Uup)),1,2,0,l,RotateUdown,RotateUup,L)*Yu[2][0]*Ye[l][nu]
+        SumDiagr = SumDiagr - CL(x,y,h,f,g,np.conjugate(np.transpose(Udown)),np.conjugate(np.transpose(Uup)),0,1,2,l,RotateUdown,RotateUup,L)*Yu[2][0]*Ye[l][nu]
+        SumDiagr = SumDiagr - CL(x,y,h,f,g,np.conjugate(np.transpose(Udown)),np.conjugate(np.transpose(Uup)),2,0,1,l,RotateUdown,RotateUup,L)*Yu[2][0]*Ye[l][nu]
     return SumDiagr 
         
         
@@ -158,32 +158,31 @@ def CIVhpm(h,f,g,Yd,Yu,Ye,x,y,Uup,Unu,Udown, L =False):
 
 ####################defining the functions passed to the proton decay, we have Ow, OhudR and OhudL
 
-def OW(h,f,g,Yd,Yu,Ye,x,y,Uup,Unu,Udown,alpha321SM_MZ,MGUT):
-    mwino = 1000
-    MSUSY = 100000
-    Diagr = CIW(h,f,g,x,y,Uup,Unu,Udown)+ CIVW(h, f, g, x, y, Uup, Unu, Udown) + CW0A(h, f, g, x, y, Uup, Unu, Udown) + CW0B(h, f, g, x, y, Uup, Unu, Udown)
-    Op = ((1j*alpha321SM_MZ[1])/4*np.pi)*(1/MGUT)*(mwino/(MSUSY**2))*Diagr
+def OW(h,f,g,Yd,Yu,Ye,x,y,Uup,Unu,Udown,alpha321SM_MZ,MGUT, mwino, MSUSY):
+    #mwino = 1000
+    #MSUSY = 1000000
+    Diagr = []
+    for nu in range(3):
+        Diagr.append(CIW(h,f,g,x,y,Uup,Unu,Udown,nu)+ CIVW(h, f, g, x, y, Uup, Unu, Udown,nu) + CW0A(h, f, g, x, y, Uup, Unu, Udown,nu) + CW0B(h, f, g, x, y, Uup, Unu, Udown,nu))
+    Diagr = np.asarray(Diagr)
+    #Op = ((1j*alpha321SM_MZ[1])/4*np.pi)*(1/MGUT)*(mwino/(MSUSY**2))*Diagr
     #print(Diagr)
     #print(Op)
     #print(np.conjugate(Op)*Op)
     #return CW0B(h, f, g, x, y, Uup, Unu, Udown)
-    return np.conjugate(Op)*Op
+    return sum (np.abs(((1j*alpha321SM_MZ[1])/4*np.pi)*(1/MGUT)*(mwino/(MSUSY**2))*D)**2 for D in Diagr )
     
-def OhusLuL(h,f,g,Yd,Yu,Ye,x,y,Uup,Unu,Udown,MGUT):
-    mwino = 1000
-    MSUSY = 100000
-    udLsR, udR = CIIIh0(h,f,g,Yd,Yu,Ye,x,y,Uup,Unu,Udown) 
-    Diagr = udR + CIIIhpm(h,f,g,Yd,Yu,Ye,x,y,Uup,Unu,Udown)
-    Op = (1j/16*np.pi)*(1/MGUT)*(mwino/(MSUSY**2))*Diagr
-    return np.conjugate(Op)*Op
+def Oh(h,f,g,Yd,Yu,Ye,x,y,Uup,Unu,Udown,MGUT,mwino,MSUSY):
+    #mwino = 1000
+    #MSUSY = 1000000
+    Diagr = []
+    for nu in range(3):
+        udLsR, udR = CIIIh0(h,f,g,Yd,Yu,Ye,x,y,Uup,Unu,Udown,nu) 
+        usRuL, udRR = CIIIh0(h,f,g,Yd,Yu,Ye,x,y,Uup,Unu,Udown,nu)
+        Diagr.append(udR + CIIIhpm(h,f,g,Yd,Yu,Ye,x,y,Uup,Unu,Udown,nu)+CIVhpm(h, f, g, Yd, Yu, Ye, x, y, Uup, Unu, Udown,nu) + usRuL)
+    #Op = (1j/16*np.pi)*(1/MGUT)*(mwino/(MSUSY**2))*Diagr
+    return sum (np.abs((1j/16*np.pi)*(1/MGUT)*(mwino/(MSUSY**2))*D)**2 for D in Diagr)
 
-def OhusRuL(h,f,g,Yd,Yu,Ye,x,y,Uup,Unu,Udown,MGUT):
-    usRuL, udR = CIIIh0(h,f,g,Yd,Yu,Ye,x,y,Uup,Unu,Udown) 
-    mwino = 1000
-    MSUSY = 100000
-    Diagr = CIVhpm(h, f, g, Yd, Yu, Ye, x, y, Uup, Unu, Udown) + usRuL #add the rest of CIIIhpm here!
-    Op = (1j/16*np.pi)*(1/MGUT)*(mwino/(MSUSY**2))*Diagr
-    return np.conjugate(Op)*Op
 
     
 

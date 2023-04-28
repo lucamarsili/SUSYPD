@@ -14,14 +14,15 @@
 #th23BF = 3.64e-3
 #deltaBF = 1.208
 
-yuBF = 2.92e-6
-ycBF = 0.00143
-YtBF = 0.534
+#from last paper at 2 GeV, approx
+yuBF = 8.359e-6
+ycBF = 0.003859375
+YtBF = 0.666
 
 
-ydBF = 0.0000481
-ysBF = 0.000952
-YbBF = 0.00695
+ydBF = 0.000018359
+ysBF = 0.000364844
+YbBF = 0.016417
 
 th12BF = 0.22739
 th13BF = 4.202e-3
